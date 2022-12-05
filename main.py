@@ -1,27 +1,22 @@
+import timeit
 import os
 import xlrd as xl
 import pandas as pd
 from openpyxl import load_workbook
 
-dir = r'C:/Users/Johnn/OneDrive/Desktop/code/count_rows/count_rows_incsv/'
+def count():
+    dir = r'C:/Users/Johnn/OneDrive/Desktop/Brain Corp/BJs/EOP Report/Localization Reports'
 
-files = [f for f in os.listdir(dir) if os.path.isfile(f) and f != 'main.py' and f!= ".gitignore"]
+    files = [f for f in os.listdir(dir) if os.path.isfile(f) and f != 'main.py' and f!= ".gitignore"]
+    count = 0
+    for file in files:
+        df = pd.read_excel(file)
 
-# files = ['finalized_S5cz2H2ey8Em6PPkun6FsM_aggregate_2022-12-01_scandit_localization_BJs_2022-12-01_localization_aggregate.xlsx']
-count = 0
-for file in files:
+        print(len(df.index))
 
-    wrkbk = load_workbook(file)
-    sh = wrkbk.active
-    total_rows = sh.max_row
+def main():
+    if __name__ == "__main__":
+        count()
+        print(timeit.timeit('output = 10*5'))
 
-    aisle_value = sh.cell(row=2, column=7).value
-
-    for i in range(1, total_rows):
-        if (sh.cell(row = i, column=7).value) != "":
-            count+=1
-print(f'\n🖩 Sup Playa, you loaded {len(files)} localization reports & the total count is: {count}.\n\n🤖 Stay Positive and keep grindin big dawg, we finna get there soon!\n')
-
-# with open('C:/Users/Johnn/OneDrive/Desktop/code/count_rows/count_rows_incsv/reports', 'rs', encoding='utf-8') as report:
-#     pd.read_excel(report)
-#     print(report)
+main()
