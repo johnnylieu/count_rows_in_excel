@@ -1,5 +1,3 @@
-import sys
-import csv
 import xlrd as xl
 import pandas as pd
 from openpyxl import load_workbook
