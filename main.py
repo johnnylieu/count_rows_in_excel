@@ -1,8 +1,13 @@
+import os
 import xlrd as xl
 import pandas as pd
 from openpyxl import load_workbook
 
-files = ['finalized_S5cz2H2ey8Em6PPkun6FsM_aggregate_2022-12-01_scandit_localization_BJs_2022-12-01_localization_aggregate.xlsx']
+dir = r'C:/Users/Johnn/OneDrive/Desktop/code/count_rows/count_rows_incsv/'
+
+files = [f for f in os.listdir(dir) if os.path.isfile(f) and f != 'main.py']
+
+# files = ['finalized_S5cz2H2ey8Em6PPkun6FsM_aggregate_2022-12-01_scandit_localization_BJs_2022-12-01_localization_aggregate.xlsx']
 
 for file in files:
     count = 0
@@ -13,7 +18,11 @@ for file in files:
 
     aisle_value = sh.cell(row=2, column=7).value
 
-    for i in range(1, total_rows+1):
+    for i in range(1, total_rows):
         if (sh.cell(row = i, column=7).value) != "":
             count+=1
-    print(f'\n🖩Sup Playa, you loaded {len(files)} localization report & the count is: {count}.\n\n🤖Stay Positive and keep grindin big dawg, we finna get there soon!')
+    print(f'\n🖩 Sup Playa, you loaded {len(files)} localization reports & the total count is: {count}.\n\n🤖 Stay Positive and keep grindin big dawg, we finna get there soon!\n')
+
+# with open('C:/Users/Johnn/OneDrive/Desktop/code/count_rows/count_rows_incsv/reports', 'r', encoding='utf-8') as report:
+#     pd.read_excel(report)
+#     print(report)
