@@ -5,12 +5,11 @@ from openpyxl import load_workbook
 
 dir = r'C:/Users/Johnn/OneDrive/Desktop/code/count_rows/count_rows_incsv/'
 
-files = [f for f in os.listdir(dir) if os.path.isfile(f) and f != 'main.py']
+files = [f for f in os.listdir(dir) if os.path.isfile(f) and f != 'main.py' and f!= ".gitignore"]
 
 # files = ['finalized_S5cz2H2ey8Em6PPkun6FsM_aggregate_2022-12-01_scandit_localization_BJs_2022-12-01_localization_aggregate.xlsx']
-
+count = 0
 for file in files:
-    count = 0
 
     wrkbk = load_workbook(file)
     sh = wrkbk.active
@@ -21,8 +20,8 @@ for file in files:
     for i in range(1, total_rows):
         if (sh.cell(row = i, column=7).value) != "":
             count+=1
-    print(f'\n🖩 Sup Playa, you loaded {len(files)} localization reports & the total count is: {count}.\n\n🤖 Stay Positive and keep grindin big dawg, we finna get there soon!\n')
+print(f'\n🖩 Sup Playa, you loaded {len(files)} localization reports & the total count is: {count}.\n\n🤖 Stay Positive and keep grindin big dawg, we finna get there soon!\n')
 
-# with open('C:/Users/Johnn/OneDrive/Desktop/code/count_rows/count_rows_incsv/reports', 'r', encoding='utf-8') as report:
+# with open('C:/Users/Johnn/OneDrive/Desktop/code/count_rows/count_rows_incsv/reports', 'rs', encoding='utf-8') as report:
 #     pd.read_excel(report)
 #     print(report)
